@@ -4,8 +4,8 @@
 Лабораторна робота 2: «Створення структури веб-проєкту»
 (КПІ ім. Ігоря Сікорського, ННІ ПСА, кафедра ММСА).
 
-> Репозиторій: <https://github.com/USERNAME/pandora-store-ua>  
-> Сайт (GitHub Pages): <https://USERNAME.github.io/pandora-store-ua/>
+> Репозиторій: <https://github.com/dudinska8760-png/pandora-store-ua>  
+> Сайт (GitHub Pages): <https://dudinska8760-png.github.io/pandora-store-ua/>
 
 ## Виконавці
 
