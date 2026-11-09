@@ -1,0 +1,166 @@
+/* =========================================================
+   components.css — повторно використовувані елементи:
+   меню, кнопки, картки, форми та їх валідація, акордеон
+   ========================================================= */
+
+/* ---------- Навігація ---------- */
+.topbar a { text-decoration: none; text-transform: uppercase; font-size: .78rem; letter-spacing: .02em; }
+.topbar a:hover, .topbar a[aria-current="page"] { color: var(--pink-text); }
+.icon-link { display: inline-flex; padding: 4px; }
+.catnav a { font-size: .85rem; padding: 2px 0; border-bottom: 2px solid transparent; }
+.catnav a:hover { border-bottom-color: var(--pink); color: var(--black); }
+
+/* бургер-кнопка (показується лише в мобільній версії — див. responsive.css) */
+.nav-toggle {
+  width: 44px; height: 44px; padding: 0; justify-self: start;
+  background: none; border: 1px solid var(--grey-l); border-radius: 4px; cursor: pointer;
+  align-items: center; justify-content: center; color: var(--black);
+}
+.nav-toggle:hover { background: var(--pink-l); }
+.burger, .burger::before, .burger::after {
+  display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px;
+  transition: transform .25s ease, background-color .25s ease;
+}
+.burger { position: relative; }
+.burger::before, .burger::after { content: ""; position: absolute; left: 0; }
+.burger::before { top: -7px; }
+.burger::after  { top: 7px; }
+.nav-toggle[aria-expanded="true"] .burger { background: transparent; }
+.nav-toggle[aria-expanded="true"] .burger::before { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .burger::after  { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- Кнопки та посилання-дії ---------- */
+.btn {
+  display: inline-block; background: var(--pink); color: var(--black);
+  border: 1px solid var(--pink); padding: 13px 26px;
+  font: 700 .85rem var(--font); text-transform: uppercase; text-decoration: none; text-align: center;
+  cursor: pointer; border-radius: 0;
+  -webkit-appearance: none; appearance: none;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.btn:hover { background: var(--pink-d); border-color: var(--pink-d); color: var(--black); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-outline { background: var(--white); border-color: var(--black); }
+.btn-outline:hover { background: var(--pink-l); border-color: var(--black); }
+.btn-block { display: block; width: 100%; margin-top: 12px; }
+.btn-wide { min-width: 220px; }
+.arrow-link { display: inline-block; text-transform: uppercase; font-size: .8rem; text-decoration: none; border-bottom: 1px solid var(--black); padding-bottom: 2px; }
+.arrow-link::after { content: " \2197"; }
+.link-btn { background: none; border: 0; font: inherit; font-size: .82rem; cursor: pointer; padding: 4px 0; color: var(--black); }
+.link-btn:hover { color: var(--pink-text); }
+.underlined { text-decoration: underline; }
+
+/* ---------- Товарні картки ---------- */
+.tile { margin: 0; }
+.tile-img { display: block; background: var(--grey-l); }
+.tile-info { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding-top: 8px; }
+.tile-info h3 { font-size: .82rem; text-transform: none; font-weight: 400; }
+.tile-info h3 a { text-decoration: none; }
+.tile-info h3 a:hover { text-decoration: underline; }
+.tile-price { margin: 0; color: var(--grey-text); font-size: .8rem; white-space: nowrap; }
+.thumb { display: inline-block; vertical-align: middle; margin-right: 10px; background: var(--grey-l); }
+
+/* ---------- Нумерований перелік категорій ---------- */
+.cat-list { list-style: none; margin: 0; counter-reset: c; border-top: 1px solid var(--black); }
+.cat-list li { counter-increment: c; border-bottom: 1px solid var(--black); }
+.cat-list a { display: flex; gap: 28px; padding: 14px 4px; text-decoration: none; font-size: .85rem; }
+.cat-list a::before { content: counter(c, decimal-leading-zero); color: var(--grey-text); min-width: 1.6em; }
+.cat-list a:hover { background: var(--pink-l); color: var(--black); }
+
+/* ---------- Пагінація ---------- */
+.count { color: var(--grey-text); font-size: .8rem; margin: 0 0 10px; }
+.round { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--grey-l); font: inherit; font-size: .85rem; cursor: pointer; color: var(--black); }
+.round.pink { background: var(--pink-l); font-size: 1.4rem; line-height: 1; }
+.round[aria-current="page"] { background: var(--pink); font-weight: 700; }
+.round:hover { background: var(--pink-d); }
+
+/* ---------- Картка товару ---------- */
+.pdp .sku { color: var(--grey-text); font-size: .78rem; margin: 0; }
+.pdp h1 { text-transform: none; font-weight: 400; font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 6px 0 10px; }
+.price { color: var(--pink-text); font-weight: 700; }
+.lead { font-size: .85rem; }
+.acc { margin-top: 26px; border-top: 1px solid var(--grey-l); }
+.acc details { border-bottom: 1px solid var(--grey-l); }
+.acc summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; padding: 14px 0; font-size: .85rem; }
+.acc summary::-webkit-details-marker { display: none; }   /* Safari */
+.acc summary::marker { content: ""; }                      /* Firefox / Chrome */
+.acc summary::after { content: "+"; font-size: 1.4rem; line-height: 1; }
+.acc details[open] summary::after { content: "\2212"; }
+.acc details > *:not(summary) { margin: 0 0 14px; font-size: .85rem; }
+.acc ul { padding-left: 1.2em; }
+.small-links { display: flex; gap: 20px; flex-wrap: wrap; font-size: .78rem; margin-top: 18px; }
+.small-links a { color: var(--grey-text); }
+
+/* =========================================================
+   ФОРМИ
+   ========================================================= */
+form { max-width: 520px; }
+label { display: block; font-weight: 700; margin: 14px 0 4px; font-size: .9rem; }
+input, select, textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--grey); border-radius: 4px;
+  font: inherit; color: var(--black); background: var(--white);
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+textarea { resize: vertical; min-height: 120px; }
+select { -webkit-appearance: none; appearance: none; padding-right: 34px; cursor: pointer;
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23141414' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 12px center; }
+input::placeholder, textarea::placeholder { color: var(--grey-text); opacity: 1; }
+input:hover, select:hover, textarea:hover { border-color: var(--black); }
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--pink-text); box-shadow: 0 0 0 3px var(--pink-l);
+}
+input:disabled, select:disabled, textarea:disabled { background: var(--grey-l); cursor: not-allowed; }
+
+fieldset { border: 1px solid var(--grey); border-radius: 4px; padding: 10px 14px; margin: 14px 0; min-width: 0; }
+legend { padding: 0 6px; font-weight: 700; font-size: .9rem; }
+fieldset label, label.check { display: block; font-weight: 400; margin: 6px 0; cursor: pointer; }
+fieldset input, label.check input { width: auto; margin-right: 8px; accent-color: var(--pink-text); }
+
+/* Фільтри каталогу — «прозорі» селекти без рамок */
+.filters select { width: auto; border: 0; background-color: transparent; border-radius: 0; box-shadow: none;
+  padding: 4px 22px 4px 0; font-size: .82rem; background-position: right 4px center; }
+.filters select:focus { box-shadow: none; outline: 3px solid var(--pink-text); outline-offset: 2px; }
+
+/* ---------- Повідомлення форми ---------- */
+.status { color: var(--ok); font-weight: 700; min-height: 1.6em; margin: 8px 0 0; }
+.status.error { color: var(--err-text); }
+.status.success::before { content: "\2713\00a0"; }
+.status.error::before { content: "\26A0\00a0"; }
+
+/* ---------- Валідація (стани полів) ----------
+   Помилку показуємо лише ПІСЛЯ взаємодії: клас .touched додає JS (blur / спроба
+   відправки). Для сучасних браузерів додатково працює :user-invalid. */
+.touched:invalid,
+input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] {
+  border-color: var(--err); background-color: var(--err-bg); box-shadow: 0 0 0 1px var(--err);
+}
+/* окреме правило: у браузерах без :user-invalid воно просто ігнорується,
+   і не ламає решту селекторів */
+input:user-invalid, select:user-invalid, textarea:user-invalid {
+  border-color: var(--err); background-color: var(--err-bg); box-shadow: 0 0 0 1px var(--err);
+}
+.touched:invalid:focus, input[aria-invalid="true"]:focus, textarea[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px rgba(214, 69, 69, .35); border-color: var(--err-text);
+}
+.touched:valid:not(:placeholder-shown):not([type="checkbox"]):not([type="radio"]) { border-color: var(--ok); }
+label.check:has(input[aria-invalid="true"]) { color: var(--err-text); }
+
+.field-error {
+  display: flex; gap: 6px; align-items: flex-start;
+  margin: 6px 0 0; font-size: .8rem; font-weight: 700; color: var(--err-text);
+}
+.field-error::before { content: "\26A0"; flex: none; }
+.field-error[hidden] { display: none; }
+
+/* ---------- Форма підписки у футері (темний фон) ---------- */
+.subscribe { display: flex; max-width: none; border: 1px solid var(--white); border-radius: 30px; overflow: hidden; }
+.subscribe input { border: 0; background: transparent; color: var(--white); border-radius: 0; font-size: .75rem; padding: 10px 16px; }
+.subscribe input:hover { border: 0; }
+.subscribe input:focus { box-shadow: none; outline: 3px solid var(--pink); outline-offset: -3px; }
+.subscribe input::placeholder { color: #CFCFCF; }
+.subscribe input[aria-invalid="true"], .subscribe input.touched:invalid { background: rgba(214, 69, 69, .25); border: 0; }
+.subscribe:has(input[aria-invalid="true"]) { border-color: #FF9AA9; }
+.subscribe button { background: none; border: 0; color: var(--white); padding: 0 14px; cursor: pointer; }
+.subscribe button:hover { color: var(--pink); }
+footer .status { color: #7FD6A5; }
+footer .status.error { color: #FFB3BE; }

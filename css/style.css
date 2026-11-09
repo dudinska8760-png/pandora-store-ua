@@ -1,0 +1,9 @@
+/* =========================================================
+   style.css — головний файл стилів Pandora Store UA.
+   Лише підключає модулі (порядок важливий для каскаду):
+   base → layout → components → responsive
+   ========================================================= */
+@import url("base.css");
+@import url("layout.css");
+@import url("components.css");
+@import url("responsive.css");

@@ -1,0 +1,90 @@
+/* =========================================================
+   responsive.css — адаптивність (mobile-first не застосовано:
+   базові стилі — десктоп, далі звуження за max-width).
+   Контрольні точки: 1024 (планшет ландшафт), 900, 768 (планшет
+   портрет → бургер-меню), 480 (малі телефони)
+   ========================================================= */
+
+/* ---------- ≤ 1024px: ноутбук / планшет ландшафт ---------- */
+@media (max-width: 1024px) {
+  :root { --gap: 18px; }
+  .topbar ul { gap: 6px 14px; }
+  .catnav ul { gap: 6px 18px; }
+  .cats-grid { gap: 28px; }
+  .foot { gap: 24px; }
+}
+
+/* ---------- ≤ 900px: планшет ---------- */
+@media (max-width: 900px) {
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-grid .feature { grid-column: 1 / -1; grid-row: auto; }
+  .foot { grid-template-columns: 1fr 1fr; }
+  .gifts { grid-template-columns: 1fr; }
+  .pdp { gap: 24px; }
+  .rec-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- ≤ 768px: планшет портрет / телефон — БУРГЕР-МЕНЮ ---------- */
+@media (max-width: 768px) {
+  /* шапка: [бургер] [логотип] [іконки] + випадаюча панель меню */
+  .topbar {
+    grid-template-areas:
+      "toggle logo right"
+      "left   left left"
+      "cats   cats cats";
+    padding-top: 10px;
+  }
+  .js .nav-toggle { display: inline-flex; }
+  .js .top-left, .js .catnav { display: none; }
+  .js .menu-open .top-left, .js .menu-open .catnav { display: block; }
+
+  .desk-only { display: none; }
+  .menu-only { display: list-item; }
+
+  /* панель меню: вертикальні списки з великими зонами натискання */
+  .top-left, .catnav { margin-top: 10px; border-top: 1px solid var(--grey-l); padding: 0; }
+  .top-left ul, .catnav ul { flex-direction: column; align-items: stretch; gap: 0; }
+  .top-left li, .catnav li { border-bottom: 1px solid var(--grey-l); }
+  .top-left a, .catnav a { display: block; padding: 13px 4px; border-bottom: 0; font-size: .85rem; }
+  .catnav { padding-bottom: 6px; }
+  .catnav ul { justify-content: flex-start; }
+
+  .cats-grid, .promo, .pdp { grid-template-columns: 1fr; }
+  .promo { padding: 16px; margin-top: 56px; }
+  .promo-text { padding: 12px 4px; }
+  .bs-grid { grid-template-columns: repeat(2, 1fr); }
+  .bs-grid .w3, .bs-grid .w4 { grid-column: span 1; }
+  .bs-grid .w6 { grid-column: 1 / -1; }
+  .benefits ul, .rec-grid { grid-template-columns: 1fr; }
+  .gifts-list { gap: 8px; }
+  .foot { grid-template-columns: 1fr; }
+  .tile-info { flex-direction: column; gap: 0; }
+  h2 { margin-top: 44px; }
+  .categories h2 { margin-top: 48px; }
+  .visit, .benefits, .gifts { margin-top: 56px; }
+  form { max-width: none; }
+}
+
+/* ---------- ≤ 480px: малі телефони ---------- */
+@media (max-width: 480px) {
+  :root { --gap: 14px; }
+  body { font-size: .92rem; }
+  .logo img { width: 140px; height: auto; }
+  .topbar { column-gap: 6px; }
+  .cat-grid { gap: 14px 12px; }
+  .bs-grid { gap: 14px 12px; }
+  .benefits li { padding: 26px 14px; }
+  .btn { width: 100%; }                      /* кнопки на всю ширину — зручно для пальця */
+  .btn-wide { min-width: 0; }
+  .filter-fields { flex-direction: column; width: 100%; }
+  .filters select { width: 100%; padding: 8px 22px 8px 0; border-bottom: 1px solid var(--grey-l); }
+  .filter-actions { width: 100%; justify-content: space-between; }
+  .gallery { gap: 10px; }
+  .small-links { flex-direction: column; gap: 8px; }
+  .cat-list a { gap: 16px; }
+}
+
+/* ---------- Широкі екрани ---------- */
+@media (min-width: 1440px) {
+  :root { --container: 1240px; }
+}
